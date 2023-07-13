@@ -11,6 +11,7 @@ import Input from "../inputs/Input";
 import Button from "../Button";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
+import { signIn } from "next-auth/react";
 
 const RegisterModal = () => {
   const registerModal = useRegisterationModal();
@@ -87,7 +88,7 @@ const RegisterModal = () => {
       <Button
         label="continue with Github"
         disabled={isLoading}
-        onClick={() => {}}
+        onClick={() => signIn("github")}
         outline
         icon={AiFillGithub}
       />
