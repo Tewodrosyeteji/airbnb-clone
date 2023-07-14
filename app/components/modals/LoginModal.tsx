@@ -86,14 +86,14 @@ const LoginModal = () => {
       <Button
         label="continue with google"
         disabled={isLoading}
-        onClick={() => {}}
+        onClick={() => signIn("google")}
         icon={FcGoogle}
         outline
       />
       <Button
         label="continue with Github"
         disabled={isLoading}
-        onClick={() => {}}
+        onClick={() => signIn("github")}
         outline
         icon={AiFillGithub}
       />

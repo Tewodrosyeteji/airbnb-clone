@@ -81,7 +81,7 @@ const RegisterModal = () => {
       <Button
         label="continue with google"
         disabled={isLoading}
-        onClick={() => {}}
+        onClick={() => signIn("google")}
         icon={FcGoogle}
         outline
       />
