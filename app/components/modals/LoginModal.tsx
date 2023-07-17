@@ -54,9 +54,10 @@ const LoginModal = () => {
     });
   };
 
-  const Toggled = useCallback(() => {
-    registerModal.onClose;
-  }, []);
+  const Toggle = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome back" subtitle="Login into your account" />
@@ -99,9 +100,9 @@ const LoginModal = () => {
       />
       <div className="text-neutral-500 text-center mt-1 font-light ">
         <p>
-          Aready have an account?
-          <span onClick={Toggled} className="text-neutral-800 hover:underline">
-            Log in
+          First time using Airbnb?
+          <span onClick={Toggle} className="text-neutral-800 hover:underline">
+            Creat an account
           </span>
         </p>
       </div>
