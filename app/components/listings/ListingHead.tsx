@@ -1,14 +1,14 @@
-import { User } from "@prisma/client";
 import Heading from "../Heading";
 import useCountries from "@/app/hooks/useCountries";
 import Image from "next/image";
 import HeartButton from "../HeartButton";
+import { SafeUser } from "@/app/types";
 
 type ListingHeadProps = {
   title: string;
   imageSrc: string;
   locationValue: string;
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
   id: string;
 };
 

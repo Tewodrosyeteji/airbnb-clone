@@ -5,7 +5,7 @@ import ListingInfo from "@/app/components/listings/ListingInfo";
 import ListingReservation from "@/app/components/listings/ListingReservation";
 import { categories } from "@/app/components/navbar/Categories";
 import useLoginModal from "@/app/hooks/useLoginModal";
-import { Listing, Reservation, User } from "@prisma/client";
+import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import axios from "axios";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
@@ -14,9 +14,11 @@ import { Range } from "react-date-range";
 import { toast } from "react-hot-toast";
 
 type ListingClientProps = {
-  listing: Listing;
-  currentUser?: User | null;
-  reservations?: Reservation[];
+  listing: SafeListing & {
+    user: SafeUser;
+  };
+  currentUser?: SafeUser | null;
+  reservations?: SafeReservation[];
 };
 
 const initialDateRange = {
@@ -82,8 +84,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
       })
       .then(() => {
         toast.success("reservation is set");
-        // route to /trip
-        router.refresh();
+        router.push("/trips");
         setDateRange(initialDateRange);
       })
       .catch(() => {
@@ -106,6 +107,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
         />
         <div className="grid grid-cols-1 md:grid-cols-7 md:gap-10 mt-6">
           <ListingInfo
+            user={listing.user}
             category={category}
             discription={listing.description}
             roomCount={listing.roomCount}

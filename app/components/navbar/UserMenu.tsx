@@ -6,12 +6,14 @@ import { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
 import useRegisterationModal from "@/app/hooks/useRegisterationModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
-import { User } from "@prisma/client";
+
 import { signOut } from "next-auth/react";
 import useRentModal from "@/app/hooks/useRentModal";
+import { useRouter } from "next/navigation";
+import { SafeUser } from "@/app/types";
 
 type UserMenuProps = {
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
 };
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
@@ -19,6 +21,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const registerModal = useRegisterationModal();
   const loginModal = useLoginModal();
   const rentModal = useRentModal();
+  const router = useRouter();
 
   const toggled = useCallback(() => {
     setIsOpen((value) => !value);
@@ -55,7 +58,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <div className="flex flex-col">
             {currentUser ? (
               <>
-                <MenuItem lable="My trips" onClick={() => {}} />
+                <MenuItem
+                  lable="My trips"
+                  onClick={() => router.push("/trips")}
+                />
                 <MenuItem lable="My favorites" onClick={() => {}} />
                 <MenuItem lable="My reservations" onClick={() => {}} />
                 <MenuItem lable="My properites" onClick={() => {}} />
