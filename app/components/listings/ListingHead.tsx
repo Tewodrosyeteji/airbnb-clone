@@ -1,3 +1,5 @@
+"use client";
+
 import Heading from "../Heading";
 import useCountries from "@/app/hooks/useCountries";
 import Image from "next/image";
